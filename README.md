@@ -4,6 +4,14 @@
 
 Toph Browser is a privacy-focused Firefox-derived Android browser project targeting **Android 6 (API 23)**.
 
+## Combined compatibility baseline
+
+Toph uses the combined **IronFox v159.0 + Tor Browser 15.0.24** baseline.
+
+- **IronFox v159.0** is the Firefox-derived Android compatibility baseline and the primary browser-version target for compatibility work.
+- **Tor Browser 15.0.24** remains the locked upstream integration and verification stack recorded in `VERSION.lock`.
+- The Tor Browser lock stays authoritative for exact source and build verification, while IronFox v159.0 provides the Firefox-derived Android compatibility model used to adapt the stack.
+
 ## Project goals
 
 - Firefox/Gecko-based browsing.
@@ -38,17 +46,18 @@ toph-browser/
 └── tests/
 ```
 
-The large Mozilla and Tor source trees are intentionally **not vendored** into this repository. They should be fetched from their official upstream repositories at the exact revisions recorded in `VERSION.lock`.
+The large Mozilla and Tor source trees are intentionally **not vendored** into this repository. They should be fetched from their official upstream repositories at the exact revisions recorded in `VERSION.lock`, with the project compatibility work aligned to the combined **IronFox v159.0 + Tor Browser 15.0.24** baseline.
 
 ## Upstream sources
 
-- Firefox: https://github.com/mozilla-firefox/firefox
-- Tor: https://gitlab.torproject.org/tpo/core/tor
+- IronFox: https://gitlab.com/ironfox-oss/IronFox/-/tree/v159.0?ref_type=heads
 - Tor Browser: https://gitlab.torproject.org/tpo/applications/tor-browser
+- Tor: https://gitlab.torproject.org/tpo/core/tor
+- Firefox: https://github.com/mozilla-firefox/firefox
 
 ## Android 6
 
-Android 6 corresponds to **API 23**. Compatibility must be established by the selected upstream Firefox/Tor Browser generation, its Android build configuration, dependencies, manifest requirements, and runtime behavior. Do not make a modern Firefox build appear compatible merely by changing a minimum SDK value.
+Android 6 corresponds to **API 23**. Compatibility must be established by the selected Android-compatible Firefox-derived baseline, the build configuration, dependencies, manifest requirements, and validation on the supported API level. Toph uses the combined **IronFox v159.0 + Tor Browser 15.0.24** baseline: IronFox is the Firefox compatibility model and Tor Browser is the locked upstream integration stack.
 
 ## Network modes
 
@@ -75,7 +84,7 @@ Changes belong in focused patches under `patches/` and should be accompanied by 
 
 ## Build workflow
 
-1. Clone the three upstream repositories into `upstream/`.
+1. Clone the upstream repositories into `upstream/`.
 2. Select release tags that are actually compatible with the Android 6 requirement.
 3. Record exact tags and commit SHAs in `VERSION.lock`.
 4. Bootstrap the matching Mozilla build environment.
@@ -83,7 +92,7 @@ Changes belong in focused patches under `patches/` and should be accompanied by 
 6. Build and test on an Android 6 device or emulator.
 7. Record compatibility and test results under `tests/`.
 
-No upstream revision hashes are invented in this repository. Exact revisions should be resolved from upstream before implementation begins.
+No upstream revision hashes are invented in this repository. Exact revisions should be resolved from upstream before implementation begins. Toph's effective project baseline is the combined **IronFox v159.0 + Tor Browser 15.0.24** stack, with Tor Browser remaining the exact locked build reference.
 
 ## Status
 

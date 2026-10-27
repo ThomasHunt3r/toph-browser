@@ -1,12 +1,19 @@
 # Verified Android 6 baseline
 
-Selected baseline: **Tor Browser 15.0.24**, released September 29, 2026.
+Selected baseline: the combined **IronFox v159.0 + Tor Browser 15.0.24** stack.
 
-Why this baseline:
+Why this combined baseline:
+- **IronFox v159.0** is the selected Firefox-derived Android compatibility baseline for Toph.
+- **Tor Browser 15.0.24** is the locked upstream build and validation baseline recorded in `VERSION.lock`.
 - Tor Browser 15.0 is based on Firefox ESR 140.
 - Tor Browser 15.0.24 updates Android GeckoView to Firefox ESR 140.17.0.
 - Tor Browser 15.x is the final major Tor Browser series supporting Android 5, 6, and 7.
 - Tor Browser 16 drops Android versions older than 8.0.
+
+Compatibility note:
+- **IronFox v159.0** is the Firefox baseline and compatibility guide.
+- **Tor Browser 15.0.24** remains the exact project lock and build reference.
+- The two are intentionally combined: IronFox defines the Firefox-derived Android target, and Tor Browser defines the reproducible upstream integration stack.
 
 ## Locked revisions
 
@@ -19,15 +26,15 @@ Why this baseline:
 
 ## Important distinction
 
-The Tor Browser repository is a Firefox-derived source tree. The Base Browser and Tor Browser revisions above are therefore the authoritative source revisions for this baseline.
+The Tor Browser repository is a Firefox-derived source tree. The Base Browser and Tor Browser revisions above are therefore the authoritative source revisions for the locked build baseline.
 
-We do not invent a Mozilla-central SHA for Firefox 140.17.0esr. If a direct Mozilla revision is needed later, it must be resolved from Mozilla's own release/source metadata and recorded separately.
+IronFox v159.0 is the Firefox-derived Android compatibility baseline selected for Toph work. It does not replace the locked build revision set. The project's exact version lock remains the authoritative implementation baseline, while IronFox provides the Android compatibility model.
 
 ## Android 6 target
 
 Toph's target is Android 6 / API 23.
 
-The upstream Tor Browser 15.0.24 Android artifacts include ARMv7, ARM64, x86, and x86_64 builds. Toph still needs its own build and runtime validation on API 23.
+The combined baseline uses **IronFox v159.0** for Firefox-derived Android compatibility logic and **Tor Browser 15.0.24** for the exact integrated build path and runtime validation on API 23.
 
 ## Next validation steps
 

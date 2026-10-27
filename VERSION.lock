@@ -1,13 +1,16 @@
 # Toph Browser upstream revision lock
 #
-# Baseline selected: Tor Browser 15.0.24 (Android), released 2026-09-29.
-# This is the last Tor Browser major series that supports Android 5/6/7.
+# Baseline selected: combined IronFox v159.0 + Tor Browser 15.0.24.
+# IronFox is the Firefox-derived Android compatibility baseline.
+# Tor Browser remains the exact upstream integration and verification lock.
 #
-# Verified from Tor Project release/build metadata. See README for sources.
+# Verified from Tor Project release/build metadata and the IronFox compatibility target.
+#
 
 [tor-browser]
 release=15.0.24
 browser_series=15.0
+firefox_reference=IronFox v159.0
 firefox_esr=140.17.0esr
 tor_browser_commit=8cae94965791def3a7e63a1acb9e998ce8133de9
 base_browser_commit=c62d7c244409d6d6ca37cd7f4819260ffc3cf60b
@@ -19,15 +22,15 @@ release=0.4.9.13
 tag=tor-0.4.9.13
 
 [firefox]
-upstream_release=140.17.0esr
-note=Toph uses the Tor Browser base-browser/Tor Browser source revisions above rather than inventing a Mozilla-central SHA. The exact Mozilla source relationship is resolved by the Tor Browser build metadata.
+upstream_release=IronFox v159.0
+note=Toph combines IronFox v159.0 as the Firefox-derived compatibility baseline with Tor Browser 15.0.24 as the locked upstream integration and verification stack.
 
 [android]
 minimum_api=23
 target_api=23
-supported_baseline=Android 5.0+ upstream baseline; Toph specifically targets Android 6 / API 23
+supported_baseline=IronFox v159.0 compatibility target; Tor Browser 15.0.24 is the locked build reference
 abis=armv7,arm64,x86,x86_64
 
 [validation]
-status=upstream-baseline-selected
+status=combined-baseline-selected
 toph_android6_build=not-yet-validated
